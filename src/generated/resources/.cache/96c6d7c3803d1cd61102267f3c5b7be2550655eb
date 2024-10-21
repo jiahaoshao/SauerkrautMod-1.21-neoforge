@@ -1,0 +1,8 @@
+// 1.21.1	2024-10-20T13:01:21.6390211	Block States: sauerkrautmagicmod
+05b28ad663eea0804af848f206971ffb3eed2e44 assets/sauerkrautmagicmod/blockstates/lamp_block.json
+79ca0f3aa42532dfddc435b0851c5b671af505a4 assets/sauerkrautmagicmod/blockstates/ruby_block.json
+b5ae47a3ef67842e859da942c7b6878803267493 assets/sauerkrautmagicmod/models/block/lamp_off.json
+62786321f263b319f6d7dfb7f5d13a591231ca72 assets/sauerkrautmagicmod/models/block/lamp_on.json
+e0c1ccf5015b96c188289abddd3db88e6a21fd48 assets/sauerkrautmagicmod/models/block/ruby_block.json
+db634ab391d54b2f8407c0c4a92141ba0fe22de4 assets/sauerkrautmagicmod/models/item/lamp_block.json
+ef4c1a62a3700df592bdabe085952d6d72b357ef assets/sauerkrautmagicmod/models/item/ruby_block.json

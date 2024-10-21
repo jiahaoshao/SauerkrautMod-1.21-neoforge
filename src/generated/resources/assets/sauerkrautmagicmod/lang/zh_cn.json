@@ -1,0 +1,14 @@
+{
+  "block.sauerkrautmagicmod.lamp_block": "锆石灯笼",
+  "block.sauerkrautmagicmod.ruby_block": "鲁比方块",
+  "item.sauerkrautmagicmod.magic_ingot": "魔术锭",
+  "item.sauerkrautmagicmod.ruby": "鲁比",
+  "item.sauerkrautmagicmod.ruby_apple": "鲁比苹果",
+  "item.sauerkrautmagicmod.ruby_boots": "鲁比靴子",
+  "item.sauerkrautmagicmod.ruby_chestplate": "鲁比胸甲",
+  "item.sauerkrautmagicmod.ruby_helmet": "鲁比头盔",
+  "item.sauerkrautmagicmod.ruby_leggings": "鲁比护腿",
+  "item.sauerkrautmagicmod.ruby_pickaxe": "鲁比⛏",
+  "item.sauerkrautmagicmod.ruby_sword": "鲁比🗡",
+  "itemgroup.sauerkrautmagicmod.sauerkraut_magic_mod_tab": "酸菜的魔法世界"
+}

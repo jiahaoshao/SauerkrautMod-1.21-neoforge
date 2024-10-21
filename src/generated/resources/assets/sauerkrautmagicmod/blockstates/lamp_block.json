@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "sauerkrautmagicmod:block/lamp_off"
+    },
+    "lit=true": {
+      "model": "sauerkrautmagicmod:block/lamp_on"
+    }
+  }
+}
