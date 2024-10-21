@@ -35,7 +35,7 @@ public class ModItems {
 
     public static  <T extends Item> DeferredItem<T> register(String name, Supplier<T> Item){
         DeferredItem<T> item =  ITEMS.register(name,Item);
-        ITEMS_SUPPLIER.add((DeferredItem<net.minecraft.world.item.Item>) item);
+        ITEMS_SUPPLIER.add((DeferredItem<Item>) item);
         return item;
     }
 
