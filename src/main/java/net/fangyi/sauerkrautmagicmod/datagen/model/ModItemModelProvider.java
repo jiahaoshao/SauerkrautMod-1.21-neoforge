@@ -78,7 +78,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     // Shoutout to El_Redstoniano for making this
-    private void trimmedArmorItem(Supplier<ArmorItem> itemDeferredItem) {
+    private void trimmedArmorItem(DeferredItem<ArmorItem> itemDeferredItem) {
         final String MOD_ID = SauerkrautMagicMod.MODID; // Change this to your mod id
 
         if(itemDeferredItem.get() instanceof ArmorItem armorItem) {
@@ -110,17 +110,15 @@ public class ModItemModelProvider extends ItemModelProvider {
                         .texture("layer0", armorItemResLoc.getNamespace() + ":item/" + armorItemResLoc.getPath())
                         .texture("layer1", trimResLoc);
 
-                ResourceLocation item = getResourceLocation(itemDeferredItem.get());
-
                 // Non-trimmed armorItem file (normal variant)
-                this.withExistingParent(item.getPath(),
+                this.withExistingParent(itemDeferredItem.getId().getPath(),
                                 mcLoc("item/generated"))
                         .override()
                         .model(new ModelFile.UncheckedModelFile(trimNameResLoc.getNamespace()  + ":item/" + trimNameResLoc.getPath()))
                         .predicate(mcLoc("trim_type"), trimValue).end()
                         .texture("layer0",
                                 ResourceLocation.fromNamespaceAndPath(MOD_ID,
-                                        "item/" + item.getPath()));
+                                        "item/" + itemDeferredItem.getId().getPath()));
             });
         }
     }
