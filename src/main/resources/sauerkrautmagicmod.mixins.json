@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.fangyi.sauerkrautmagicmod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BowItemMixin",
+    "ExampleMixin",
+    "PlayerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

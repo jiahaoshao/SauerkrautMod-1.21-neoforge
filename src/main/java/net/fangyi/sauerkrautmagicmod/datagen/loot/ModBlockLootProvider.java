@@ -1,6 +1,7 @@
 package net.fangyi.sauerkrautmagicmod.datagen.loot;
 
 import net.fangyi.sauerkrautmagicmod.block.ModBlocks;
+import net.fangyi.sauerkrautmagicmod.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -26,5 +27,9 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
     protected void generate() {
         this.dropSelf(ModBlocks.RUBY_BLOCK.get());
         this.dropSelf(ModBlocks.LAMP_BLOCK.get());
+        this.dropSelf(ModBlocks.RUBY_FRAME.get());
+        this.dropSelf(ModBlocks.GLASS_JAR.get());
+        this.dropOther(ModBlocks.RUBY_ORE.get(), ModItems.RUBY);
+        this.dropSelf(ModBlocks.OBSIDIAN_OBJ.get());
     }
 }

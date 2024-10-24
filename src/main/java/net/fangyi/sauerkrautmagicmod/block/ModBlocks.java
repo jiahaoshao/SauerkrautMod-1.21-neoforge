@@ -1,16 +1,13 @@
 package net.fangyi.sauerkrautmagicmod.block;
 
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
-import net.fangyi.sauerkrautmagicmod.block.custom.LampBlock;
-import net.fangyi.sauerkrautmagicmod.block.custom.RubyBlock;
+import net.fangyi.sauerkrautmagicmod.block.custom.*;
 import net.fangyi.sauerkrautmagicmod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -30,6 +27,10 @@ public class ModBlocks {
                     .ofFullCopy(Blocks.GLASS)
                     .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0)
     ));
+    public static final DeferredBlock<RubyFrameBlock> RUBY_FRAME = registerBlockAndItem("ruby_frame", RubyFrameBlock::new);
+    public static final DeferredBlock<GlassJarBlock> GLASS_JAR = registerBlockAndItem("glass_jar", GlassJarBlock::new);
+    public static final DeferredBlock<Block> RUBY_ORE = registerBlockAndItem("ruby_ore",()->new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)));
+    public static final DeferredBlock<Block> OBSIDIAN_OBJ = registerBlockAndItem("obsidian_obj", ObsidianObj::new);
 
     public static <T extends Block> DeferredBlock<T> registerBlockAndItem(String name, Supplier<T> Block){
         DeferredBlock<T> block = BLOCKS.register(name, Block);
@@ -37,7 +38,7 @@ public class ModBlocks {
         return block;
     }
 
-    public static void register(IEventBus eventBus){
-        BLOCKS.register(eventBus);
+    public static void register(IEventBus bus) {
+        BLOCKS.register(bus);
     }
 }

@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 import java.util.function.Supplier;
 
 public enum ModTiers implements Tier {
-    RUBY(BlockTags.INCORRECT_FOR_DIAMOND_TOOL,2000,1000F,10F,30,() -> Ingredient.of(ModItems.RUBY.get()));
+    RUBY(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 2000, 25F, 10F, 30, () -> Ingredient.of(ModItems.RUBY.get()));
 
     private final TagKey<Block> incorrectBlocksForDrops;
     private final int uses;

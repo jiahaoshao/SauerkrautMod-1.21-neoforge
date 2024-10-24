@@ -1,3 +1,4 @@
-// 1.21.1	2024-10-20T01:55:35.4366187	Tags for minecraft:block mod id sauerkrautmagicmod
-3f503a4ff73051472a15987bd5d6f9a8da79ec83 data/minecraft/tags/block/mineable/pickaxe.json
+// 1.21.1	2024-10-21T18:28:06.2635041	Tags for minecraft:block mod id sauerkrautmagicmod
+d964619e6cbda7bc6a73501ea72b9c29264ffefa data/minecraft/tags/block/mineable/pickaxe.json
+9c82f23adab99a5e1a8aa739d1e595b60af87004 data/minecraft/tags/block/needs_iron_tool.json
 3f503a4ff73051472a15987bd5d6f9a8da79ec83 data/minecraft/tags/block/needs_stone_tool.json

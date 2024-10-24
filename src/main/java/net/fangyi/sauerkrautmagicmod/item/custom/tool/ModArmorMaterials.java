@@ -12,13 +12,14 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class ModArmorMaterials  {
+public class ModArmorMaterials extends ArmorMaterials {
 
     public static final Holder<ArmorMaterial> RUBY = register(
             "ruby",
@@ -33,9 +34,7 @@ public class ModArmorMaterials  {
             SoundEvents.ARMOR_EQUIP_DIAMOND,
             4F,
             0.2F,
-            ()-> Ingredient.of(ModItems.RUBY.get()),
-            List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(SauerkrautMagicMod.MODID,"ruby"),"",true),
-                    new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(SauerkrautMagicMod.MODID,"ruby"),"_overlay",false))
+            ()-> Ingredient.of(ModItems.RUBY.get())
     );
 
     private static Holder<ArmorMaterial> register(

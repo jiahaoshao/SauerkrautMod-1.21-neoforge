@@ -1,6 +1,17 @@
 {
+  "block.sauerkrautmagicmod.glass_jar": "玻璃罐子",
   "block.sauerkrautmagicmod.lamp_block": "锆石灯笼",
+  "block.sauerkrautmagicmod.obsidian_obj": "黑曜石塔",
   "block.sauerkrautmagicmod.ruby_block": "鲁比方块",
+  "block.sauerkrautmagicmod.ruby_frame": "鲁比框架",
+  "block.sauerkrautmagicmod.ruby_ore": "鲁比矿石",
+  "effect.sauerkrautmagicmod.frosted": "冻结",
+  "enchantment.sauerkrautmagicmod.chill_aura": "凛寒气场",
+  "enchantment.sauerkrautmagicmod.chill_aura.desc": "当敌人攻击你的时候会受到类似雪怪首领盔甲的冰冻效果",
+  "enchantment.sauerkrautmagicmod.fire_react": "炽焰反制",
+  "enchantment.sauerkrautmagicmod.fire_react.desc": "当敌人攻击你的时候会受到类似炽铁盔甲的着火效果",
+  "enchantment.sauerkrautmagicmod.rapid_shoot": "速射",
+  "enchantment.sauerkrautmagicmod.rapid_shoot.desc": "快速射击",
   "item.sauerkrautmagicmod.magic_ingot": "魔术锭",
   "item.sauerkrautmagicmod.ruby": "鲁比",
   "item.sauerkrautmagicmod.ruby_apple": "鲁比苹果",
@@ -10,5 +21,6 @@
   "item.sauerkrautmagicmod.ruby_leggings": "鲁比护腿",
   "item.sauerkrautmagicmod.ruby_pickaxe": "鲁比⛏",
   "item.sauerkrautmagicmod.ruby_sword": "鲁比🗡",
-  "itemgroup.sauerkrautmagicmod.sauerkraut_magic_mod_tab": "酸菜的魔法世界"
+  "item.sauerkrautmagicmod.ruby_wand": "鲁比棒",
+  "itemGroup.sauerkrautmagicmod.mod_tab": "酸菜的魔法世界"
 }

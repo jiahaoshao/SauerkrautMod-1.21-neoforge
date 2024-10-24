@@ -1,3 +1,7 @@
-// 1.21.1	2024-10-20T01:48:20.5467041	Loot Tables
+// 1.21.1	2024-10-21T19:43:42.4508981	Loot Tables
+616a0cdebbdc2c027ad5db2e842d792c562da791 data/sauerkrautmagicmod/loot_table/blocks/glass_jar.json
 a00a91dc9b08f0903bba11cbc4e3ee5d03c81577 data/sauerkrautmagicmod/loot_table/blocks/lamp_block.json
+2b7806f0e158ccb59b7c77e3d8988c00e24e2987 data/sauerkrautmagicmod/loot_table/blocks/obsidian_obj.json
 98cf4d717c9afebdb4e98c4dd8a5e9b7930c703b data/sauerkrautmagicmod/loot_table/blocks/ruby_block.json
+11c9d4064f5faa49cbb9cc169cda31246eb5fb52 data/sauerkrautmagicmod/loot_table/blocks/ruby_frame.json
+1ac8e8a76b192a493b969974d0a90afd0a594bea data/sauerkrautmagicmod/loot_table/blocks/ruby_ore.json

@@ -1,0 +1,9 @@
+{
+  "loader": "neoforge:obj",
+  "model": "sauerkrautmagicmod:models/block/obsidian_obj.obj",
+  "flip_v": true,
+  "textures": {
+    "0": "sauerkrautmagicmod:block/obsidian_obj",
+    "particle": "sauerkrautmagicmod:block/obsidian_obj"
+  }
+}

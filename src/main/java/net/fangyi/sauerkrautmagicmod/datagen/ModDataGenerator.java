@@ -6,14 +6,17 @@ import net.fangyi.sauerkrautmagicmod.datagen.lang.ModChineseLangProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.loot.ModLootTableProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.model.ModBlockStateProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.model.ModItemModelProvider;
+import net.fangyi.sauerkrautmagicmod.datagen.recipe.ModRecipeProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.tag.ModBlockTagsProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.tag.ModItemTagsProvider;
+import net.fangyi.sauerkrautmagicmod.datagen.tag.ModPaintingVariantTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.concurrent.CompletableFuture;
@@ -35,5 +38,8 @@ public class ModDataGenerator {
         BlockTagsProvider blockTagsProvider = new ModBlockTagsProvider(output, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new ModItemTagsProvider(output, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModPaintingVariantTagsProvider(output, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModRecipeProvider(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new RegistryDataGenerator(output, lookupProvider));
     }
 }

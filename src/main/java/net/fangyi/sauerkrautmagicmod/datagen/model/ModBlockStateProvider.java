@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.BlockModelProvider;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -20,7 +21,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         this.simpleBlockWithItem(ModBlocks.RUBY_BLOCK.get(),cubeAll(ModBlocks.RUBY_BLOCK.get()));
+        this.simpleBlockWithItem(ModBlocks.RUBY_ORE.get(),cubeAll(ModBlocks.RUBY_ORE.get()));
         this.propertyBlock(ModBlocks.LAMP_BLOCK.get());
+        this.simpleBlockWithItemWithoutModel(ModBlocks.RUBY_FRAME.get(), "ruby_frame");
+        this.simpleBlockWithItemWithoutModel(ModBlocks.GLASS_JAR.get(), "glass_jar");
+        this.simpleBlockWithItemWithoutModel(ModBlocks.OBSIDIAN_OBJ.get(), "obsidian_obj");
     }
 
     public void propertyBlock(Block block) {
@@ -32,5 +37,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .partialState().with(LampBlock.LIT, false)
                 .modelForState().modelFile(block_off).addModel();
         simpleBlockItem(block, block_off);
+    }
+
+    public void simpleBlockWithItemWithoutModel(Block block,String name){
+        var model_path = models().getExistingFile(ResourceLocation.fromNamespaceAndPath(SauerkrautMagicMod.MODID,name));
+        var model = new ConfiguredModel(model_path);
+        getVariantBuilder(block)
+                .partialState().setModels(model);
+        simpleBlockItem(block,model_path);
     }
 }
