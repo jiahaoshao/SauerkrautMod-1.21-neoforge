@@ -1,4 +1,4 @@
-package net.fangyi.sauerkrautmagicmod.enchatment.effect;
+package net.fangyi.sauerkrautmagicmod.enchatment.effect.entity;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

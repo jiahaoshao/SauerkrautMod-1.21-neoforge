@@ -3,7 +3,8 @@ package net.fangyi.sauerkrautmagicmod;
 import com.mojang.logging.LogUtils;
 import net.fangyi.sauerkrautmagicmod.block.ModBlocks;
 import net.fangyi.sauerkrautmagicmod.effect.ModMobEffects;
-import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantmentEffects;
+import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantmentEntityEffect;
+import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantmentValueEffect;
 import net.fangyi.sauerkrautmagicmod.item.ModCreativeTabs;
 import net.fangyi.sauerkrautmagicmod.item.ModItems;
 import net.fangyi.sauerkrautmagicmod.painting.ModPaintingVariants;
@@ -29,7 +30,8 @@ public class SauerkrautMagicMod {
         ModBlocks.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModMobEffects.register(modEventBus);
-        ModEnchantmentEffects.register(modEventBus);
+        ModEnchantmentEntityEffect.register(modEventBus);
+        ModEnchantmentValueEffect.register(modEventBus);
         ModPaintingVariants.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);

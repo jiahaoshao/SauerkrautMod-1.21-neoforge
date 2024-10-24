@@ -1,34 +1,32 @@
 package net.fangyi.sauerkrautmagicmod.enchatment;
 
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
-import net.fangyi.sauerkrautmagicmod.enchatment.effect.ApplyFrostedEffect;
-import net.fangyi.sauerkrautmagicmod.enchatment.effect.SmashBlocksEffect;
-import net.minecraft.advancements.critereon.ItemPredicate;
+import net.fangyi.sauerkrautmagicmod.enchatment.effect.entity.ApplyFrostedEffect;
+import net.fangyi.sauerkrautmagicmod.enchatment.effect.entity.SecKillEffect;
+import net.fangyi.sauerkrautmagicmod.enchatment.effect.value.PowerfulEffect;
+import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.item.enchantment.effects.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.EnchantmentLevelProvider;
-
-import java.util.Optional;
 
 public class ModEnchantments{
     public static final ResourceKey<Enchantment> FIRE_REACT = registerKey("fire_react");
     public static final ResourceKey<Enchantment> CHILL_AURA = registerKey("chill_aura");
     public static final ResourceKey<Enchantment> RAPID_SHOOT = registerKey("rapid_shoot");
+    public static final ResourceKey<Enchantment> POWERFUL = registerKey("powerful");
 
     private static ResourceKey<Enchantment> registerKey(String name) {
         return ResourceKey.create(Registries.ENCHANTMENT, SauerkrautMagicMod.prefix(name));
@@ -86,6 +84,28 @@ public class ModEnchantments{
                 8,
                 EquipmentSlotGroup.MAINHAND)
         ));
+        register(
+                context,
+                POWERFUL,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.constantCost(20),
+                                        Enchantment.constantCost(50),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new SecKillEffect(LevelBasedValue.perLevel(0.1F)),
+                                DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType().isDirect(true))
+                        )
+        );
 
     }
 
