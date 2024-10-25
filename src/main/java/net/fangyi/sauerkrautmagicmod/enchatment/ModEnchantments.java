@@ -5,12 +5,14 @@ import net.fangyi.sauerkrautmagicmod.enchatment.effect.entity.ApplyFrostedEffect
 import net.fangyi.sauerkrautmagicmod.enchatment.effect.entity.SecKillEffect;
 import net.fangyi.sauerkrautmagicmod.enchatment.effect.value.PowerfulEffect;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -18,7 +20,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.item.enchantment.effects.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.EnchantmentLevelProvider;
 
@@ -27,6 +31,7 @@ public class ModEnchantments{
     public static final ResourceKey<Enchantment> CHILL_AURA = registerKey("chill_aura");
     public static final ResourceKey<Enchantment> RAPID_SHOOT = registerKey("rapid_shoot");
     public static final ResourceKey<Enchantment> POWERFUL = registerKey("powerful");
+    public static final ResourceKey<Enchantment> ONE_TAP = registerKey("one_tap");
 
     private static ResourceKey<Enchantment> registerKey(String name) {
         return ResourceKey.create(Registries.ENCHANTMENT, SauerkrautMagicMod.prefix(name));
@@ -84,12 +89,14 @@ public class ModEnchantments{
                 8,
                 EquipmentSlotGroup.MAINHAND)
         ));
+
         register(
                 context,
                 POWERFUL,
                 Enchantment.enchantment(
                                 Enchantment.definition(
-                                        items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                        items.getOrThrow(ItemTags.SHARP_WEAPON_ENCHANTABLE),
+                                        items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
                                         2,
                                         1,
                                         Enchantment.constantCost(20),
@@ -105,6 +112,32 @@ public class ModEnchantments{
                                 new SecKillEffect(LevelBasedValue.perLevel(0.1F)),
                                 DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType().isDirect(true))
                         )
+        );
+
+        register(
+                context,
+                ONE_TAP,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.BOW_ENCHANTABLE),
+                                        items.getOrThrow(ItemTags.CROSSBOW_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.constantCost(20),
+                                        Enchantment.constantCost(50),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                        )
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.DAMAGING_ENTITY,
+                                new SecKillEffect(LevelBasedValue.perLevel(0.5F)),
+                                DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType().isDirect(true))
+                        )
+                        .withEffect(EnchantmentEffectComponents.PROJECTILE_COUNT, new AddValue(LevelBasedValue.perLevel(2.0F)))
+                        .withEffect(EnchantmentEffectComponents.PROJECTILE_SPREAD, new AddValue(LevelBasedValue.perLevel(10.0F)))
         );
 
     }

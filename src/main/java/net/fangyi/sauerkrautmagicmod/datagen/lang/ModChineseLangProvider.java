@@ -41,6 +41,7 @@ public class ModChineseLangProvider extends LanguageProvider {
         this.addEnchantment("fire_react", "炽焰反制", "当敌人攻击你的时候会受到类似炽铁盔甲的着火效果");
         this.addEnchantment("rapid_shoot", "速射", "快速射击");
         this.addEnchantment("powerful", "一刀", "一刀");
+        this.addEnchantment("one_tap", "颗秒", "颗秒");
 
         //effects
         this.add("effect.sauerkrautmagicmod.frosted", "冻结");

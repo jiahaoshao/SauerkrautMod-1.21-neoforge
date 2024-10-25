@@ -34,9 +34,10 @@
     "base": 20,
     "per_level_above_first": 0
   },
+  "primary_items": "#minecraft:enchantable/sword",
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#minecraft:enchantable/weapon",
+  "supported_items": "#minecraft:enchantable/sharp_weapon",
   "weight": 2
 }

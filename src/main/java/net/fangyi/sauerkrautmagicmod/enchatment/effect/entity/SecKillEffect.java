@@ -2,6 +2,7 @@ package net.fangyi.sauerkrautmagicmod.enchatment.effect.entity;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,9 +18,9 @@ public record SecKillEffect(LevelBasedValue duration) implements EnchantmentEnti
 
     @Override
     public void apply(ServerLevel level, int enchantmentLevel, EnchantedItemInUse item, Entity entity, Vec3 origin) {
-        if(entity instanceof LivingEntity) {
-            entity.kill();
-        }
+        entity.kill();
+        SauerkrautMagicMod.LOGGER.info(entity.toString());
+        SauerkrautMagicMod.LOGGER.info(origin.toString());
     }
 
     @Override
