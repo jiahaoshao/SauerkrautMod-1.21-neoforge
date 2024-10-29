@@ -16,10 +16,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-
-import static net.minecraft.world.level.block.AnvilBlock.damage;
 
 @Mixin(SwordItem.class)
 public class TpSwordMixin extends Item {
@@ -64,11 +60,6 @@ public class TpSwordMixin extends Item {
                         level.addFreshEntity(thrownenderpearl);
                     }
                     player.awardStat(Stats.ITEM_USED.get(this));
-                    int auto_can_tp_enchantmentLevel = itemstack.getEnchantmentLevel(level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.AUTO_CAN_TP));
-                    if(auto_can_tp_enchantmentLevel >= 1){
-
-                        //use(level, player, usedHand);
-                    }
                     return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
                 }
             }
@@ -77,8 +68,9 @@ public class TpSwordMixin extends Item {
     }
 
 
+
     @Unique
-    private ItemStack hasEnderpearl(Player player) {
+    private static ItemStack hasEnderpearl(Player player) {
         NonNullList<ItemStack> items = player.getInventory().items;
         ItemStack itemstack1 = items.get(0);
         for (ItemStack item : items) {

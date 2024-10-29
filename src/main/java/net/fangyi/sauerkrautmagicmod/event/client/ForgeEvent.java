@@ -1,14 +1,20 @@
 package net.fangyi.sauerkrautmagicmod.event.client;
 
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
+import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantments;
 import net.fangyi.sauerkrautmagicmod.item.custom.RubyItem;
 import net.fangyi.sauerkrautmagicmod.item.custom.RubySwordItem;
 import net.fangyi.sauerkrautmagicmod.item.custom.RubyWandItem;
+import net.fangyi.sauerkrautmagicmod.mixin.TpSwordMixin;
+import net.fangyi.sauerkrautmagicmod.util.ModDataComponents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
@@ -23,6 +29,20 @@ import java.util.Set;
 
 @EventBusSubscriber(modid = SauerkrautMagicMod.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class ForgeEvent {
+
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerTickEvent.Pre event) {
+        Level level = event.getEntity().level();
+        if(!level.isClientSide) {
+            Player player = event.getEntity();
+            ItemStack stack = player.getMainHandItem();
+            boolean isOnCooldown = player.getCooldowns().isOnCooldown(stack.getItem());
+            int auto_can_tp_enchantmentLevel = stack.getEnchantmentLevel(level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.AUTO_CAN_TP));
+            if(!isOnCooldown && auto_can_tp_enchantmentLevel > 0 && !stack.has(ModDataComponents.CAN_TP)){
+                stack.use(level, player, InteractionHand.MAIN_HAND);
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
