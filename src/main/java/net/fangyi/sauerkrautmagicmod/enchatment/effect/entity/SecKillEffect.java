@@ -18,7 +18,9 @@ public record SecKillEffect(LevelBasedValue duration) implements EnchantmentEnti
 
     @Override
     public void apply(ServerLevel level, int enchantmentLevel, EnchantedItemInUse item, Entity entity, Vec3 origin) {
-        entity.kill();
+        if(entity instanceof LivingEntity) {
+            entity.kill();
+        }
         SauerkrautMagicMod.LOGGER.info(entity.toString());
         SauerkrautMagicMod.LOGGER.info(origin.toString());
     }

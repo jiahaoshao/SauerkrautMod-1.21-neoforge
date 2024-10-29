@@ -1,6 +1,7 @@
 package net.fangyi.sauerkrautmagicmod.enchatment;
 
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
+import net.fangyi.sauerkrautmagicmod.datagen.tag.ModEnchantmentTagsProvider;
 import net.fangyi.sauerkrautmagicmod.enchatment.effect.entity.ApplyFrostedEffect;
 import net.fangyi.sauerkrautmagicmod.enchatment.effect.entity.SecKillEffect;
 import net.fangyi.sauerkrautmagicmod.enchatment.effect.value.PowerfulEffect;
@@ -32,6 +33,8 @@ public class ModEnchantments{
     public static final ResourceKey<Enchantment> RAPID_SHOOT = registerKey("rapid_shoot");
     public static final ResourceKey<Enchantment> POWERFUL = registerKey("powerful");
     public static final ResourceKey<Enchantment> ONE_TAP = registerKey("one_tap");
+    public static final ResourceKey<Enchantment> CAN_TP = registerKey("can_tp");
+    public static final ResourceKey<Enchantment> AUTO_CAN_TP = registerKey("auto_can_tp");
 
     private static ResourceKey<Enchantment> registerKey(String name) {
         return ResourceKey.create(Registries.ENCHANTMENT, SauerkrautMagicMod.prefix(name));
@@ -129,15 +132,44 @@ public class ModEnchantments{
                                         EquipmentSlotGroup.MAINHAND
                                 )
                         )
-                        .withEffect(
-                                EnchantmentEffectComponents.POST_ATTACK,
-                                EnchantmentTarget.ATTACKER,
-                                EnchantmentTarget.DAMAGING_ENTITY,
-                                new SecKillEffect(LevelBasedValue.perLevel(0.5F)),
-                                DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType().isDirect(true))
+                        .withEffect(EnchantmentEffectComponents.DAMAGE,
+                                new AddValue(LevelBasedValue.constant(10086f)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(EntityTypeTags.ARROWS).build()
+                                )
                         )
-                        .withEffect(EnchantmentEffectComponents.PROJECTILE_COUNT, new AddValue(LevelBasedValue.perLevel(2.0F)))
-                        .withEffect(EnchantmentEffectComponents.PROJECTILE_SPREAD, new AddValue(LevelBasedValue.perLevel(10.0F)))
+        );
+
+        register(
+                context,
+                CAN_TP,
+                Enchantment.enchantment(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
+                                        2,
+                                        1,
+                                        Enchantment.constantCost(20),
+                                        Enchantment.constantCost(50),
+                                        8,
+                                        EquipmentSlotGroup.MAINHAND
+                                )
+                )
+        );
+
+        register(
+                context,
+                AUTO_CAN_TP,
+                Enchantment.enchantment(
+                        Enchantment.definition(
+                                items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
+                                2,
+                                1,
+                                Enchantment.constantCost(20),
+                                Enchantment.constantCost(50),
+                                8,
+                                EquipmentSlotGroup.MAINHAND
+                        )
+                )
         );
 
     }

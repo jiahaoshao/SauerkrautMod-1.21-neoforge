@@ -3,8 +3,11 @@
   "package": "net.fangyi.sauerkrautmagicmod.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EnchantmentsMixin",
     "RapidShootMixin$BowItemMixin",
-    "RapidShootMixin$CrossbowItemMixin"
+    "RapidShootMixin$CrossbowItemMixin",
+    "TpSwordMixin",
+    "UseItemMixin"
   ],
   "client": [
   ],

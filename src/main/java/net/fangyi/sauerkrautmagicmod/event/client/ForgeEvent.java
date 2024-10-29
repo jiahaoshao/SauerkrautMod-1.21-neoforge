@@ -1,6 +1,7 @@
 package net.fangyi.sauerkrautmagicmod.event.client;
 
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
+import net.fangyi.sauerkrautmagicmod.item.custom.RubyItem;
 import net.fangyi.sauerkrautmagicmod.item.custom.RubySwordItem;
 import net.fangyi.sauerkrautmagicmod.item.custom.RubyWandItem;
 import net.minecraft.core.BlockPos;
@@ -31,7 +32,7 @@ public class ForgeEvent {
         if(!level.isClientSide){
             Player player = event.getEntity();
             ItemStack stack = player.getMainHandItem();
-            if(stack.getItem() instanceof RubySwordItem){
+            if(stack.getItem() instanceof RubyItem){
                 Vec3 start = player.getEyePosition();
                 Vec3 end = player.getLookAngle().normalize().scale(32f).add(start);
                 //使用射线投射检测玩家视线方向上的方块碰撞，获取碰撞结果

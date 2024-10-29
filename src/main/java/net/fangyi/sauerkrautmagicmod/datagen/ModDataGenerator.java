@@ -8,6 +8,7 @@ import net.fangyi.sauerkrautmagicmod.datagen.model.ModBlockStateProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.model.ModItemModelProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.recipe.ModRecipeProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.tag.ModBlockTagsProvider;
+import net.fangyi.sauerkrautmagicmod.datagen.tag.ModEnchantmentTagsProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.tag.ModItemTagsProvider;
 import net.fangyi.sauerkrautmagicmod.datagen.tag.ModPaintingVariantTagsProvider;
 import net.minecraft.core.HolderLookup;
@@ -41,5 +42,6 @@ public class ModDataGenerator {
         generator.addProvider(event.includeServer(), new ModPaintingVariantTagsProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModRecipeProvider(output, lookupProvider));
         generator.addProvider(event.includeServer(), new RegistryDataGenerator(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new ModEnchantmentTagsProvider(output, lookupProvider));
     }
 }

@@ -8,6 +8,7 @@ import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantmentValueEffect;
 import net.fangyi.sauerkrautmagicmod.item.ModCreativeTabs;
 import net.fangyi.sauerkrautmagicmod.item.ModItems;
 import net.fangyi.sauerkrautmagicmod.painting.ModPaintingVariants;
+import net.fangyi.sauerkrautmagicmod.util.ModDataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -33,6 +34,8 @@ public class SauerkrautMagicMod {
         ModEnchantmentEntityEffect.register(modEventBus);
         ModEnchantmentValueEffect.register(modEventBus);
         ModPaintingVariants.register(modEventBus);
+        ModDataComponents.register(modEventBus);
+
 
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);

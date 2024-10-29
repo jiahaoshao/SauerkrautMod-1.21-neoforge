@@ -27,6 +27,7 @@ public class ModChineseLangProvider extends LanguageProvider {
         this.add(ModItems.RUBY_LEGGINGS.get(), "鲁比护腿");
         this.add(ModItems.RUBY_BOOTS.get(), "鲁比靴子");
         this.add(ModItems.RUBY_WAND.get(), "鲁比棒");
+        this.add(ModItems.ICE_BOW.get(), "冰弓");
 
         //blocks
         this.add(ModBlocks.RUBY_BLOCK.get(), "鲁比方块");
@@ -42,6 +43,8 @@ public class ModChineseLangProvider extends LanguageProvider {
         this.addEnchantment("rapid_shoot", "速射", "快速射击");
         this.addEnchantment("powerful", "一刀", "一刀");
         this.addEnchantment("one_tap", "颗秒", "颗秒");
+        this.addEnchantment("can_tp", "末影刀", "末影刀");
+        this.addEnchantment("auto_can_tp", "自动装填", "自动装填");
 
         //effects
         this.add("effect.sauerkrautmagicmod.frosted", "冻结");

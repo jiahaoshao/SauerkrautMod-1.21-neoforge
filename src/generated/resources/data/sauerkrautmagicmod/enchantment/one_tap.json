@@ -4,46 +4,17 @@
     "translate": "enchantment.sauerkrautmagicmod.one_tap"
   },
   "effects": {
-    "minecraft:post_attack": [
+    "minecraft:damage": [
       {
-        "affected": "damaging_entity",
         "effect": {
-          "type": "sauerkrautmagicmod:sec_kill",
-          "duration": {
-            "type": "minecraft:linear",
-            "base": 0.5,
-            "per_level_above_first": 0.5
-          }
+          "type": "minecraft:add",
+          "value": 10086.0
         },
-        "enchanted": "attacker",
         "requirements": {
-          "condition": "minecraft:damage_source_properties",
+          "condition": "minecraft:entity_properties",
+          "entity": "direct_attacker",
           "predicate": {
-            "is_direct": true
-          }
-        }
-      }
-    ],
-    "minecraft:projectile_count": [
-      {
-        "effect": {
-          "type": "minecraft:add",
-          "value": {
-            "type": "minecraft:linear",
-            "base": 2.0,
-            "per_level_above_first": 2.0
-          }
-        }
-      }
-    ],
-    "minecraft:projectile_spread": [
-      {
-        "effect": {
-          "type": "minecraft:add",
-          "value": {
-            "type": "minecraft:linear",
-            "base": 10.0,
-            "per_level_above_first": 10.0
+            "type": "#minecraft:arrows"
           }
         }
       }

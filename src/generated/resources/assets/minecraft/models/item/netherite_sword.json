@@ -2,13 +2,13 @@
   "parent": "minecraft:item/handheld",
   "overrides": [
     {
-      "model": "sauerkrautmagicmod:item/ruby_sword_can_tp",
+      "model": "minecraft:item/netherite_sword_can_tp",
       "predicate": {
         "sauerkrautmagicmod:can_tp": 1.0
       }
     }
   ],
   "textures": {
-    "layer0": "sauerkrautmagicmod:item/ruby_sword"
+    "layer0": "minecraft:item/netherite_sword"
   }
 }

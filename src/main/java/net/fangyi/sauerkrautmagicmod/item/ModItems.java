@@ -23,13 +23,14 @@ public class ModItems {
     public static final DeferredItem<Item> RUBY = register("ruby", RubyItem::new);
     public static final DeferredItem<Item> MAGIC_INGOT = register("magic_ingot", MagicIngotItem::new);
     public static final DeferredItem<Item> RUBY_APPLE = register("ruby_apple", RubyAppleItem::new);
-    public static final DeferredItem<SwordItem> RUBY_SWORD = register("ruby_sword", RubySwordItem::new);
+    public static final DeferredItem<RubySwordItem> RUBY_SWORD = register("ruby_sword", RubySwordItem::new);
     public static final DeferredItem<PickaxeItem> RUBY_PICKAXE = register("ruby_pickaxe", RubyPickaxeItem::new);
     public static final DeferredItem<ArmorItem> RUBY_HELMET = register("ruby_helmet", () -> new ArmorItem(ModArmorMaterials.RUBY, ArmorItem.Type.HELMET, (new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(40)))));
     public static final DeferredItem<ArmorItem> RUBY_CHESTPLATE = register("ruby_chestplate", () -> new ArmorItem(ModArmorMaterials.RUBY, ArmorItem.Type.CHESTPLATE, (new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(40)))));
     public static final DeferredItem<ArmorItem> RUBY_LEGGINGS = register("ruby_leggings", () -> new ArmorItem(ModArmorMaterials.RUBY, ArmorItem.Type.LEGGINGS, (new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(40)))));
     public static final DeferredItem<ArmorItem> RUBY_BOOTS = register("ruby_boots", () -> new ArmorItem(ModArmorMaterials.RUBY, ArmorItem.Type.BOOTS, (new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(40)))));
     public static final DeferredItem<Item> RUBY_WAND = register("ruby_wand", RubyWandItem::new);
+    public static final DeferredItem<Item> ICE_BOW = register("ice_bow", () -> new IceBowItem(new Item.Properties().rarity(Rarity.UNCOMMON).durability(384)));
 
     public static  <T extends Item> DeferredItem<T> register(String name, Supplier<T> Item){
         DeferredItem<T> item =  ITEMS.register(name,Item);

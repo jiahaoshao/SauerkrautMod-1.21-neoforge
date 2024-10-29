@@ -9,15 +9,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-import java.util.LinkedHashMap;
-import java.util.Objects;
+import java.util.*;
+
+import static net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod.prefix;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -42,13 +45,46 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         this.basicItem(ModItems.RUBY.get());
         this.basicItem(ModItems.RUBY_APPLE.get());
-        this.handheldItem(ModItems.RUBY_SWORD.get());
+        //this.handheldItem(ModItems.RUBY_SWORD.get());
         this.handheldItem(ModItems.RUBY_PICKAXE.get());
         this.trimmedArmorItem(ModItems.RUBY_HELMET);
         this.trimmedArmorItem(ModItems.RUBY_CHESTPLATE);
         this.trimmedArmorItem(ModItems.RUBY_LEGGINGS);
         this.trimmedArmorItem(ModItems.RUBY_BOOTS);
         this.magicIngotModel(getResourceLocation(ModItems.MAGIC_INGOT.get()));
+
+        ModelFile icePulling0 = bowItem("ice_bow_pulling_0", prefix("item/ice_bow_solid_pulling_0"), prefix("item/ice_bow_clear_pulling_0"));
+        ModelFile icePulling1 = bowItem("ice_bow_pulling_1", prefix("item/ice_bow_solid_pulling_1"), prefix("item/ice_bow_clear_pulling_1"));
+        ModelFile icePulling2 = bowItem("ice_bow_pulling_2", prefix("item/ice_bow_solid_pulling_2"), prefix("item/ice_bow_clear_pulling_2"));
+        iceBowTex(icePulling0, icePulling1, icePulling2);
+
+        List<Item> TP_SWORD = new ArrayList<>();
+        TP_SWORD.add(ModItems.RUBY_SWORD.get());
+        TP_SWORD.add(Items.WOODEN_SWORD.asItem());
+        TP_SWORD.add(Items.STONE_SWORD.asItem());
+        TP_SWORD.add(Items.IRON_SWORD.asItem());
+        TP_SWORD.add(Items.GOLDEN_SWORD.asItem());
+        TP_SWORD.add(Items.DIAMOND_SWORD.asItem());
+        TP_SWORD.add(Items.NETHERITE_SWORD.asItem());
+
+        TP_SWORD.forEach(this::TPSwordItem);
+
+    }
+
+    private void TPSwordItem(Item item){
+        String name = getResourceLocation(item).toString();
+        ResourceLocation layer = ResourceLocation.fromNamespaceAndPath(getResourceLocation(item).getNamespace(), "item/" + getResourceLocation(item).getPath());
+        ItemModelBuilder builder = withExistingParent(name + "_can_tp", "item/handheld");
+        builder = builder.texture("layer0", layer);
+        builder = builder.texture("layer1", prefix("item/sword_can_tp"));
+
+        this.getBuilder(name)
+                .parent(new ModelFile.UncheckedModelFile("item/handheld"))
+                .texture("layer0", layer)
+                .override()
+                .predicate(ResourceLocation.fromNamespaceAndPath(SauerkrautMagicMod.MODID, "can_tp"), 1)
+                .model(builder)
+                .end();
     }
 
     public ResourceLocation getResourceLocation(Item item) {
@@ -64,6 +100,8 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .model(new ModelFile.UncheckedModelFile("item/gold_ingot"))
                 .end();
     }
+
+
 
     // Shoutout to El_Redstoniano for making this
     private void trimmedArmorItem(DeferredItem<ArmorItem> itemDeferredItem) {
@@ -112,4 +150,20 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
 
+
+
+    private ItemModelBuilder bowItem(String name, ResourceLocation... layers) {
+        ItemModelBuilder builder = withExistingParent(name, "item/bow");
+        for (int i = 0; i < layers.length; i++) {
+            builder = builder.texture("layer" + i, layers[i]);
+        }
+        return builder;
+    }
+
+    private void iceBowTex(ModelFile pull0, ModelFile pull1, ModelFile pull2) {
+        bowItem(ModItems.ICE_BOW.getId().getPath(), prefix("item/ice_bow_solid"), prefix("item/ice_bow_clear"))
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).model(pull0).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 0.65).model(pull1).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 0.9).model(pull2).end();
+    }
 }

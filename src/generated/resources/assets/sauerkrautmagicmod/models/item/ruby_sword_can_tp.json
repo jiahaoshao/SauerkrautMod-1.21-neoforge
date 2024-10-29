@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "sauerkrautmagicmod:item/ruby_sword",
+    "layer1": "sauerkrautmagicmod:item/sword_can_tp"
+  }
+}
