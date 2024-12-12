@@ -22,10 +22,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         this.simpleBlockWithItem(ModBlocks.RUBY_BLOCK.get(),cubeAll(ModBlocks.RUBY_BLOCK.get()));
         this.simpleBlockWithItem(ModBlocks.RUBY_ORE.get(),cubeAll(ModBlocks.RUBY_ORE.get()));
+        this.simpleBlockWithItem(ModBlocks.DATA_SAVE_BLOCK.get(),cubeAll(ModBlocks.DATA_SAVE_BLOCK.get()));
         this.propertyBlock(ModBlocks.LAMP_BLOCK.get());
         this.simpleBlockWithItemWithoutModel(ModBlocks.RUBY_FRAME.get(), "ruby_frame");
         this.simpleBlockWithItemWithoutModel(ModBlocks.GLASS_JAR.get(), "glass_jar");
         this.simpleBlockWithItemWithoutModel(ModBlocks.OBSIDIAN_OBJ.get(), "obsidian_obj");
+        this.simpleBlockWithItemWithoutModel(ModBlocks.SWORD_BLOCK.get(), "sword_block");
+        //this.simpleBlockWithItem(ModBlocks.SWORD_BLOCK.get());
     }
 
     public void propertyBlock(Block block) {

@@ -31,5 +31,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GLASS_JAR.get());
         this.dropOther(ModBlocks.RUBY_ORE.get(), ModItems.RUBY);
         this.dropSelf(ModBlocks.OBSIDIAN_OBJ.get());
+        this.dropSelf(ModBlocks.DATA_SAVE_BLOCK.get());
+        this.dropSelf(ModBlocks.SWORD_BLOCK.get());
     }
 }

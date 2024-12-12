@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-26T22:13:22.5557578	Item Models: sauerkrautmagicmod
+// 1.21.1	2024-11-02T22:13:56.8043889	Item Models: sauerkrautmagicmod
 aa31f80d7dd22a6dd7245cc347fe5f8f831e609d assets/minecraft/models/item/diamond_sword.json
 cb43ed1c63f1d35a4060b4684d944e17304fb2ed assets/minecraft/models/item/diamond_sword_can_tp.json
 5d12f812efc07374e3ac9b9fdf1f26a7a180dc07 assets/minecraft/models/item/golden_sword.json
@@ -11,6 +11,7 @@ cb43ed1c63f1d35a4060b4684d944e17304fb2ed assets/minecraft/models/item/diamond_sw
 15fdac35a500e94a72369d86906448c8ad897685 assets/minecraft/models/item/stone_sword_can_tp.json
 d1cccad7b6dbabd3a6b267a051bc0ca157da2e0a assets/minecraft/models/item/wooden_sword.json
 64e387366d5417fdd75b1e24e6e3131f7a9e0f0f assets/minecraft/models/item/wooden_sword_can_tp.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/sauerkrautmagicmod/models/item/flying_sword_spawn_egg.json
 7113bb828b59781f9e4b05d0d7988d6b6d1ce81a assets/sauerkrautmagicmod/models/item/ice_bow.json
 a4d1a6d1828f059a48d5b2cbcb522c7fbe642944 assets/sauerkrautmagicmod/models/item/ice_bow_pulling_0.json
 28ce3e0c6f5be9cb58f808964c31fcf8d0f5c459 assets/sauerkrautmagicmod/models/item/ice_bow_pulling_1.json

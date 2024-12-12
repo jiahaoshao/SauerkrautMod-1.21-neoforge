@@ -2,10 +2,15 @@ package net.fangyi.sauerkrautmagicmod.datagen.lang;
 
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
 import net.fangyi.sauerkrautmagicmod.block.ModBlocks;
+import net.fangyi.sauerkrautmagicmod.entity.ModEntityTypes;
 import net.fangyi.sauerkrautmagicmod.item.ModItems;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.entity.EntityType;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.registries.DeferredHolder;
+
+import java.util.function.Supplier;
 
 public class ModChineseLangProvider extends LanguageProvider {
     public ModChineseLangProvider(PackOutput output, String locale) {
@@ -36,6 +41,8 @@ public class ModChineseLangProvider extends LanguageProvider {
         this.add(ModBlocks.GLASS_JAR.get(), "玻璃罐子");
         this.add(ModBlocks.RUBY_ORE.get(), "鲁比矿石");
         this.add(ModBlocks.OBSIDIAN_OBJ.get(), "黑曜石塔");
+        this.add(ModBlocks.DATA_SAVE_BLOCK.get(), "数据保存器");
+        this.add(ModBlocks.SWORD_BLOCK.get(), "钻石剑");
 
         //enchantments
         this.addEnchantment("chill_aura", "凛寒气场", "当敌人攻击你的时候会受到类似雪怪首领盔甲的冰冻效果");
@@ -48,10 +55,22 @@ public class ModChineseLangProvider extends LanguageProvider {
 
         //effects
         this.add("effect.sauerkrautmagicmod.frosted", "冻结");
+
+        //entities
+        this.addEntityAndEgg(ModEntityTypes.FLYING_SWORD, "飞行剑");
     }
 
     public void addEnchantment(String key, String title, String desc) {
         this.add("enchantment.sauerkrautmagicmod." + key, title);
         this.add("enchantment.sauerkrautmagicmod." + key + ".desc", desc);
+    }
+
+    public void addEntityType(Supplier<? extends EntityType<?>> key, String name) {
+        this.add((EntityType)key.get(), name);
+    }
+
+    public void addEntityAndEgg(DeferredHolder<EntityType<?>, ? extends EntityType<?>> entity, String name) {
+        this.addEntityType(entity, name);
+        this.add("item.sauerkrautmagicmod." + entity.getId().getPath() + "_spawn_egg", name + "刷怪蛋");
     }
 }

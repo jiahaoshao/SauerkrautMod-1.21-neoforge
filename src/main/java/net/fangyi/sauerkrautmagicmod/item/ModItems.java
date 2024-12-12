@@ -1,6 +1,7 @@
 package net.fangyi.sauerkrautmagicmod.item;
 
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
+import net.fangyi.sauerkrautmagicmod.block.ModBlocks;
 import net.fangyi.sauerkrautmagicmod.item.custom.*;
 import net.fangyi.sauerkrautmagicmod.item.custom.tool.ModArmorMaterials;
 import net.minecraft.core.registries.Registries;
@@ -31,6 +32,7 @@ public class ModItems {
     public static final DeferredItem<ArmorItem> RUBY_BOOTS = register("ruby_boots", () -> new ArmorItem(ModArmorMaterials.RUBY, ArmorItem.Type.BOOTS, (new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(40)))));
     public static final DeferredItem<Item> RUBY_WAND = register("ruby_wand", RubyWandItem::new);
     public static final DeferredItem<Item> ICE_BOW = register("ice_bow", () -> new IceBowItem(new Item.Properties().rarity(Rarity.UNCOMMON).durability(384)));
+    public static final DeferredItem<Item> FIRST_GUI_ITEM = register("first_gui_item", OpenFirstGuiItem::new);
 
     public static  <T extends Item> DeferredItem<T> register(String name, Supplier<T> Item){
         DeferredItem<T> item =  ITEMS.register(name,Item);

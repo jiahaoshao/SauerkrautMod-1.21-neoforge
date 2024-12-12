@@ -1,14 +1,20 @@
 package net.fangyi.sauerkrautmagicmod.event.client;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
 import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantments;
 import net.fangyi.sauerkrautmagicmod.item.custom.RubyItem;
+import net.fangyi.sauerkrautmagicmod.item.custom.RubyPickaxeItem;
 import net.fangyi.sauerkrautmagicmod.item.custom.RubySwordItem;
 import net.fangyi.sauerkrautmagicmod.item.custom.RubyWandItem;
 import net.fangyi.sauerkrautmagicmod.mixin.TpSwordMixin;
 import net.fangyi.sauerkrautmagicmod.util.ModDataComponents;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +26,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.client.settings.KeyConflictContext;
+import net.neoforged.neoforge.client.settings.KeyModifier;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,6 +40,10 @@ import java.util.Set;
 @EventBusSubscriber(modid = SauerkrautMagicMod.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class ForgeEvent {
 
+    /**
+     * 注册末影刀的模型修改事件
+     * @param event
+     */
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Pre event) {
         Level level = event.getEntity().level();
@@ -52,7 +66,7 @@ public class ForgeEvent {
         if(!level.isClientSide){
             Player player = event.getEntity();
             ItemStack stack = player.getMainHandItem();
-            if(stack.getItem() instanceof RubyItem){
+            if(stack.getItem() instanceof RubyPickaxeItem){
                 Vec3 start = player.getEyePosition();
                 Vec3 end = player.getLookAngle().normalize().scale(32f).add(start);
                 //使用射线投射检测玩家视线方向上的方块碰撞，获取碰撞结果
@@ -93,4 +107,6 @@ public class ForgeEvent {
             }
         }
     }
+
+
 }

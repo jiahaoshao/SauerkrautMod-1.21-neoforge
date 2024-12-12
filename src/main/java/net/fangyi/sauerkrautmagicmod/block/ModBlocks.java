@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -31,12 +32,23 @@ public class ModBlocks {
     public static final DeferredBlock<GlassJarBlock> GLASS_JAR = registerBlockAndItem("glass_jar", GlassJarBlock::new);
     public static final DeferredBlock<Block> RUBY_ORE = registerBlockAndItem("ruby_ore",()->new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)));
     public static final DeferredBlock<Block> OBSIDIAN_OBJ = registerBlockAndItem("obsidian_obj", ObsidianObj::new);
+    public static final DeferredBlock<Block> DATA_SAVE_BLOCK = registerBlockAndItem("data_save_block", DataSaveBlock::new);
+    //public static final DeferredBlock<Block> SWORD_BLOCK = registerBlockAndItem("sword_block", SwordBlock::new);
+    public static final DeferredBlock<Block> SWORD_BLOCK = register("sword_block", SwordBlock::new);
+    public static final DeferredItem<BlockItem> SWORD_BLOCK_ITEM = ModItems.register("sword_block", () -> new BlockItem(ModBlocks.SWORD_BLOCK.get(), new Item.Properties()));
+
 
     public static <T extends Block> DeferredBlock<T> registerBlockAndItem(String name, Supplier<T> Block){
         DeferredBlock<T> block = BLOCKS.register(name, Block);
         ModItems.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         return block;
     }
+
+    public static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> Block){
+        DeferredBlock<T> block = BLOCKS.register(name, Block);
+        return block;
+    }
+
 
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);

@@ -22,7 +22,7 @@ public abstract class UseItemMixin {
     public void tick(CallbackInfo ci) {
         if(!(this.getUseItem().getItem() instanceof AirItem))
         {
-            SauerkrautMagicMod.LOGGER.info("getUseItem" + this.getUseItem().toString());
+            //SauerkrautMagicMod.LOGGER.info("getUseItem" + this.getUseItem().toString());
             //SauerkrautMagicMod.LOGGER.info("getUsedItemHand" + this.getUsedItemHand().toString());
         }
 

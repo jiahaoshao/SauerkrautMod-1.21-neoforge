@@ -1,6 +1,8 @@
 package net.fangyi.sauerkrautmagicmod.block.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -33,6 +35,7 @@ public class LampBlock extends Block {
                 return InteractionResult.SUCCESS;
             } else {
                 level.setBlock(pos,state.cycle(LIT),3);
+                level.playSound(null, pos, SoundEvents.BELL_BLOCK, SoundSource.BLOCKS, 1.0f, 1.0f);
                 return InteractionResult.CONSUME;
             }
         }

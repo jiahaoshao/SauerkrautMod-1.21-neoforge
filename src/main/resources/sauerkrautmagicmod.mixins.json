@@ -3,13 +3,16 @@
   "package": "net.fangyi.sauerkrautmagicmod.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BowSonicBoomMixin",
     "EnchantmentsMixin",
     "RapidShootMixin$BowItemMixin",
     "RapidShootMixin$CrossbowItemMixin",
+    "SwordFlyingMixin$SwordItemMixin",
     "TpSwordMixin",
     "UseItemMixin"
   ],
   "client": [
+    "SwordFlyingMixin$LocalPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

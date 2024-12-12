@@ -5,6 +5,7 @@ import net.fangyi.sauerkrautmagicmod.block.ModBlocks;
 import net.fangyi.sauerkrautmagicmod.effect.ModMobEffects;
 import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantmentEntityEffect;
 import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantmentValueEffect;
+import net.fangyi.sauerkrautmagicmod.entity.ModEntityTypes;
 import net.fangyi.sauerkrautmagicmod.item.ModCreativeTabs;
 import net.fangyi.sauerkrautmagicmod.item.ModItems;
 import net.fangyi.sauerkrautmagicmod.painting.ModPaintingVariants;
@@ -35,6 +36,7 @@ public class SauerkrautMagicMod {
         ModEnchantmentValueEffect.register(modEventBus);
         ModPaintingVariants.register(modEventBus);
         ModDataComponents.register(modEventBus);
+        ModEntityTypes.register(modEventBus);
 
 
         modEventBus.addListener(this::commonSetup);

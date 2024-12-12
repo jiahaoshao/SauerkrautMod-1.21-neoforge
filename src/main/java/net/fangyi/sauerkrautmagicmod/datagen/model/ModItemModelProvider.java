@@ -1,6 +1,8 @@
 package net.fangyi.sauerkrautmagicmod.datagen.model;
 
 import net.fangyi.sauerkrautmagicmod.SauerkrautMagicMod;
+import net.fangyi.sauerkrautmagicmod.block.ModBlocks;
+import net.fangyi.sauerkrautmagicmod.entity.ModEntityTypes;
 import net.fangyi.sauerkrautmagicmod.item.ModItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -10,13 +12,16 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
+import twilightforest.init.TFEntities;
 
 import java.util.*;
 
@@ -43,6 +48,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        for (DeferredHolder<Item, ?> item : ModEntityTypes.SPAWN_EGGS.getEntries()) {
+            if (item.get() instanceof SpawnEggItem) {
+                getBuilder(item.getId().getPath()).parent(getExistingFile(ResourceLocation.withDefaultNamespace("item/template_spawn_egg")));
+            }
+        }
+
         this.basicItem(ModItems.RUBY.get());
         this.basicItem(ModItems.RUBY_APPLE.get());
         //this.handheldItem(ModItems.RUBY_SWORD.get());

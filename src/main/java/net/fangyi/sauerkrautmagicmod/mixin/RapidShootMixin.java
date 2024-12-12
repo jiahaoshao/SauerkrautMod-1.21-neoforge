@@ -1,32 +1,47 @@
 package net.fangyi.sauerkrautmagicmod.mixin;
 
 import net.fangyi.sauerkrautmagicmod.enchatment.ModEnchantments;
+import net.fangyi.sauerkrautmagicmod.entity.ai.behavior.SonicBoomHandler;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EntityAttachment;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ChargedProjectiles;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Predicate;
+
+import static net.minecraft.world.item.BowItem.getPowerForTime;
 
 public class RapidShootMixin {
     @Mixin(BowItem.class)
     public abstract static class BowItemMixin extends ProjectileWeaponItem {
 
-        @Shadow
-        public abstract void releaseUsing(ItemStack stack, Level level, LivingEntity entityLiving, int timeLeft);
-
         public BowItemMixin(Properties properties) {
             super(properties);
         }
+
 
         @Override
         public Predicate<ItemStack> getAllSupportedProjectiles() {
@@ -36,11 +51,6 @@ public class RapidShootMixin {
         @Override
         public int getDefaultProjectileRange() {
             return 15;
-        }
-
-        @Override
-        protected void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float velocity, float inaccuracy, float angle, @Nullable LivingEntity target) {
-            projectile.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot() + angle, 0.0F, velocity, inaccuracy);
         }
 
         @Override
@@ -79,9 +89,11 @@ public class RapidShootMixin {
 
         @Shadow private boolean midLoadSoundPlayed;
 
+
         public CrossbowItemMixin(Properties properties) {
             super(properties);
         }
+
 
         @Override
         public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
